@@ -16,6 +16,7 @@ function iniciar() {
     dibujarSuelo();
     dibujarPersonaje();
     dibujarLimon();
+    aparecerLimon();
 }
 
 function dibujarSuelo() {
@@ -78,5 +79,16 @@ function detectarColision(){
     if(colisionX && colisionY){
         alert("¡ATRAPADO!");
         // Aquí puedes reiniciar el juego o sumar puntos
+        aparecerLimon();
     }
+}
+function probarAleatorio(){
+    let aleatorio=generarAleatorio(10,80);
+    console.log(aleatorio);
+}
+
+function aparecerLimon(){
+    limonX=generarAleatorio(0,canvas.width-ANCHO_LIMON);
+    limonY=0;
+    actualizarPantalla();
 }
