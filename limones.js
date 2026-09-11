@@ -16,9 +16,10 @@ let limonY=0;
 let puntaje=0;
 let vidas=3;
 let velocidadCaida=200;
+let intervalo 
 
 function iniciar() {
-   setInterval(bajarLimon,velocidadCaida);
+    intervalo = setInterval(bajarLimon, velocidadCaida);
     dibujarSuelo();
     dibujarPersonaje();
     dibujarLimon();
@@ -86,7 +87,10 @@ function detectarAtrapado(){
         puntaje += 1;//La forma corta de sumar
        mostrarEnSpan("txtPuntaje", puntaje);
     }
-    
+        /*Si consigo 3 limones → velocidad pasa de 200 a 150
+        Si consigo 6 limones → velocidad pasa de 150 a 100
+        Si consigo 10 limones → mensaje de ganador*/
+
     if (puntaje === 3) {
         velocidadCaida = 150;
     }
@@ -96,9 +100,9 @@ function detectarAtrapado(){
     }
 
     if (puntaje === 10) {
+        clearInterval(intervalo);
         alert("¡GANASTE! Tienes los limones; ahora te faltan sal y tequila.");
-    }
-
+}
 }
 /*SI el limón llegó al suelo:
     resta una vida
@@ -112,7 +116,11 @@ function detectarPiso() {
         mostrarEnSpan("txtVidas", vidas);
         aparecerLimon();
 
+        /*Cuando no quedan vidas:
+        detener el reloj que baja el limón
+        mostrar GAME OVER*/
         if (vidas === 0) {
+            clearInterval(intervalo);
             alert("GAME OVER");
         }
     }
@@ -123,6 +131,8 @@ function aparecerLimon(){
     limonY=0;
     actualizarPantalla();
 }
+
+
 
 //= no significa “es igual” como en matemática. En programación significa:
 //Guarda el valor de la derecha dentro de la caja de la izquierda.
