@@ -1,9 +1,11 @@
+//las variables son cajas, let crea esa caja donde se guarda la informacion
+
 let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
 
 const ALTURA_SUELO = 20;
 const ALTURA_PERSONAJE = 60;
-const ANCHO_PERSONAJE = 40; // Ancho del personaje dibujado (rectángulo de 40px)
+const ANCHO_PERSONAJE = 40;
 const ANCHO_LIMON = 20;
 const ALTO_LIMON = 20;
 
@@ -11,8 +13,12 @@ let personajeX = canvas.width / 2;
 let personajeY = canvas.height-(ALTURA_SUELO+ALTURA_PERSONAJE);
 let limonX=canvas.width/2;
 let limonY=0;
+let puntaje=0;
+let vidas=3;
+let velocidadCaida=200;
 
 function iniciar() {
+   setInterval(bajarLimon,velocidadCaida);
     dibujarSuelo();
     dibujarPersonaje();
     dibujarLimon();
@@ -25,18 +31,18 @@ function dibujarSuelo() {
 }
 function dibujarPersonaje(){
     ctx.fillStyle = "#18568f";
-    ctx.fillRect(personajeX, personajeY - (ALTURA_SUELO + ALTURA_PERSONAJE), 40, ALTURA_PERSONAJE);
+    ctx.fillRect(personajeX, personajeY,ANCHO_PERSONAJE,ALTURA_PERSONAJE);
 }
 
-// Mueve el personaje 10 píxeles hacia la izquierda
+
 function moverIzquierda() {
     personajeX -= 10;
-    // Limitar movimiento para que no salga del canvas
+   
     if(personajeX < 0) personajeX = 0;
     actualizarPantalla();
 }
 
-// Mueve el personaje 10 píxeles hacia la derecha
+
 function moverDerecha() {
     personajeX += 10;
     // Limitar movimiento para que no salga del canvas
@@ -48,7 +54,7 @@ function actualizarPantalla(){
     limpiarCanva();
     dibujarPersonaje();
     dibujarSuelo();
-    dibujarLimon(); // CORREGIDO: Agregados paréntesis para llamar la función
+    dibujarLimon(); 
 }
 
 
@@ -57,34 +63,47 @@ function limpiarCanva(){
 }
 
 function dibujarLimon(){
-     ctx.fillStyle = "#4e8f18";
-     ctx.fillRect(limonX, limonY, ANCHO_LIMON, ALTO_LIMON); // CORREGIDO: Cambié punto por coma entre limonY y ANCHO_LIMON, agregué coma antes de ALTO_LIMON
+     ctx.fillStyle = "#4e8f18"; //elige el color verde.
+     ctx.fillRect(limonX, limonY, ANCHO_LIMON, ALTO_LIMON); //dibuja un rectángulo
 }
-// Mueve el limón hacia abajo (simula que cae)
+
 function bajarLimon(){
     limonY = limonY + 10;
     actualizarPantalla();
-    detectarColision(); // Detectar colisión solo cuando el limón se mueve (cae)
+    detectarAtrapado(); 
+    detectarPiso();
 }
-// Detecta si el limón toca al personaje
-function detectarColision(){
-    // Validar colisión en el eje X (izquierda-derecha)
+
+function detectarAtrapado(){
+   
     let colisionX = limonX + ANCHO_LIMON > personajeX && limonX < personajeX + ANCHO_PERSONAJE;
-
-    // Validar colisión en el eje Y (arriba-abajo)
-    // Comparar posición Y del limón con la posición Y del personaje
+    
     let colisionY = limonY + ALTO_LIMON > personajeY && limonY < personajeY + ALTURA_PERSONAJE;
-
-    // Si colisiona en ambos ejes, mostrar alerta
+    
     if(colisionX && colisionY){
-        alert("¡ATRAPADO!");
-        // Aquí puedes reiniciar el juego o sumar puntos
+       
         aparecerLimon();
+        puntaje += 1;//La forma corta de sumar
+       mostrarEnSpan("txtPuntaje", puntaje);
     }
+  
 }
-function probarAleatorio(){
-    let aleatorio=generarAleatorio(10,80);
-    console.log(aleatorio);
+/*SI el limón llegó al suelo:
+    resta una vida
+    muestra las vidas en la pantalla
+    crea otro limón arriba
+    SI las vidas ahora son 0:
+        muestra GAME OVER*/ 
+function detectarPiso() {
+    if (limonY + ALTO_LIMON >= canvas.height - ALTURA_SUELO) {              
+        vidas = vidas - 1;
+        mostrarEnSpan("txtVidas", vidas);
+        aparecerLimon();
+
+        if (vidas === 0) {
+            alert("GAME OVER");
+        }
+    }
 }
 
 function aparecerLimon(){
@@ -92,3 +111,13 @@ function aparecerLimon(){
     limonY=0;
     actualizarPantalla();
 }
+
+//= no significa “es igual” como en matemática. En programación significa:
+//Guarda el valor de la derecha dentro de la caja de la izquierda.
+
+//Los paréntesis () quieren decir “ejecuta esta función”.
+
+//La estructura es siempre:
+//if (condición) {
+//    instrucciones;
+//}
