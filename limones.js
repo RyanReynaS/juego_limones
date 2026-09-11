@@ -86,7 +86,19 @@ function detectarAtrapado(){
         puntaje += 1;//La forma corta de sumar
        mostrarEnSpan("txtPuntaje", puntaje);
     }
-  
+    
+    if (puntaje === 3) {
+        velocidadCaida = 150;
+    }
+
+    if (puntaje === 6) {
+        velocidadCaida = 100;
+    }
+
+    if (puntaje === 10) {
+        alert("¡GANASTE! Tienes los limones; ahora te faltan sal y tequila.");
+    }
+
 }
 /*SI el limón llegó al suelo:
     resta una vida
