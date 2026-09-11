@@ -132,6 +132,16 @@ function aparecerLimon(){
     actualizarPantalla();
 }
 
+function reiniciar() {
+    vidas = 3;
+    puntaje = 0;
+    velocidadCaida = 200;
+
+    mostrarEnSpan("txtVidas", vidas);
+    mostrarEnSpan("txtPuntaje", puntaje);
+
+    iniciar();
+}
 
 
 //= no significa “es igual” como en matemática. En programación significa:
