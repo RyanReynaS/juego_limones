@@ -11,6 +11,7 @@
 <head>
   <!-- Metadatos de la página -->
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Título que aparece en la pestaña del navegador -->
   <title>Caza Limones</title>
 
@@ -26,14 +27,17 @@
 <body onload="iniciar()">
   <!-- Contenedor principal que centra todo -->
   <div class="contenedor">
-    <!-- Título del juego -->
-    <h1>Atrapar Limones</h1>
+    <header class="encabezado">
+      <!-- Título del juego -->
+      <p class="etiqueta">JUEGO ARCADE</p>
+      <h1>Atrapar Limones</h1>
 
-    <!-- Información adicional -->
-    <p>Si del cielo te caen limones .....</p>
+      <!-- Información adicional -->
+      <p class="subtitulo">Si del cielo te caen limones, ¡atrapa todos los que puedas!</p>
 
-    <!-- Autor del juego -->
-    <h2>Autor: Ryan Reyna</h2>
+      <!-- Autor del juego -->
+      <p class="autor">Creado por <strong>Ryan Reyna</strong></p>
+    </header>
 
     <!-- ==========================================
          CANVAS - La pantalla del juego
@@ -42,7 +46,9 @@
          width="600" = ancho de 600 píxeles
          height="400" = alto de 400 píxeles
          Este elemento se controla totalmente desde JavaScript -->
-    <canvas id="areaJuego" width="600" height="400"></canvas>
+    <div class="marco-juego">
+      <canvas id="areaJuego" width="600" height="400"></canvas>
+    </div>
 
     <!-- ==========================================
          PANEL DE INFORMACIÓN
@@ -50,9 +56,9 @@
     <!-- Muestra el puntaje y las vidas restantes -->
     <div class="panel">
       <!-- Puntaje: el <span id="txtPuntaje"> se actualiza dinámicamente desde JavaScript -->
-      <p>Puntaje: <span id="txtPuntaje">0</span></p>
+      <p class="estadistica"><span class="nombre-estadistica">Puntaje</span><span id="txtPuntaje">0</span></p>
       <!-- Vidas: el <span id="txtVidas"> se actualiza dinámicamente desde JavaScript -->
-      <p>Vidas: <span id="txtVidas">3</span></p>
+      <p class="estadistica"><span class="nombre-estadistica">Vidas</span><span id="txtVidas">3</span></p>
     </div>
 
     <!-- ==========================================
@@ -61,13 +67,13 @@
     <!-- Los botones permiten mover el personaje izquierda/derecha y reiniciar -->
     <div class="botones">
       <!-- Botón para mover a la izquierda - Llama a moverIzquierda() -->
-      <button type="button" onclick="moverIzquierda()">Izquierda</button>
+      <button type="button" class="boton-mover" onclick="moverIzquierda()"><span aria-hidden="true">←</span> Izquierda</button>
 
       <!-- Botón para mover a la derecha - Llama a moverDerecha() -->
-      <button type="button" onclick="moverDerecha()">Derecha</button>
+      <button type="button" class="boton-mover" onclick="moverDerecha()">Derecha <span aria-hidden="true">→</span></button>
 
       <!-- Botón para reiniciar el juego - Llama a reiniciar() -->
-      <button type="button" onclick="reiniciar()">Reiniciar</button>
+      <button type="button" class="boton-reiniciar" onclick="reiniciar()"><span aria-hidden="true">↻</span> Reiniciar</button>
     </div>
   </div>
 

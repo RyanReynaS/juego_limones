@@ -7,11 +7,18 @@
    ========================================== */
 
 /* ESTILOS DEL CUERPO DE LA PÁGINA (body) */
+* {
+  box-sizing: border-box;
+}
+
 body {
   /* Tipo de letra a usar en toda la página */
-  font-family: Arial, sans-serif;
+  font-family: "Trebuchet MS", Arial, sans-serif;
   /* Color de fondo de la página (azul muy oscuro) */
-  background-color: #0f172a;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(253, 224, 71, 0.16), transparent 24rem),
+    radial-gradient(circle at 88% 85%, rgba(45, 212, 191, 0.14), transparent 26rem),
+    #071a1a;
   /* Color del texto (blanco para que se vea en fondo oscuro) */
   color: white;
   /* Centra todo el contenido horizontalmente */
@@ -19,15 +26,55 @@ body {
   /* Elimina el espaciado por defecto del navegador */
   margin: 0;
   /* Añade 20px de espacio interno en los lados */
-  padding: 20px;
+  padding: 36px 20px;
+  min-height: 100vh;
 }
 
 /* ESTILOS DEL CONTENEDOR PRINCIPAL */
 .contenedor {
   /* Ancho máximo de 800px (si la pantalla es más grande, no crece más) */
-  max-width: 800px;
+  max-width: 760px;
   /* Margen automático de 0 arriba/abajo y automático a los lados (centra horizontalmente) */
   margin: 0 auto;
+  padding: 30px;
+  background: rgba(11, 36, 35, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+}
+
+.encabezado {
+  margin-bottom: 24px;
+}
+
+.etiqueta {
+  margin: 0 0 8px;
+  color: #fde047;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+h1 {
+  margin: 0;
+  color: #fffbe6;
+  font-size: clamp(2rem, 6vw, 3.3rem);
+  line-height: 1;
+  text-shadow: 0 3px 0 #779100, 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.subtitulo {
+  max-width: 480px;
+  margin: 16px auto 10px;
+  color: #d1fae5;
+  font-size: 1.03rem;
+  line-height: 1.55;
+}
+
+.autor {
+  margin: 0;
+  color: #8ed0c4;
+  font-size: 0.85rem;
 }
 
 /* ESTILOS DEL CANVAS (la pantalla del juego) */
@@ -35,17 +82,59 @@ canvas {
   /* Color de fondo dentro del canvas (gris) */
   background-color: #111827;
   /* Borde cian/turquesa de 3px alrededor del canvas */
-  border: 3px solid #38bdf8;
+  border: 4px solid #d9f99d;
   /* Mostrar como bloque (en su propia línea) */
   display: block;
   /* Margen: 20px arriba/abajo, automático a los lados (centra horizontalmente) */
-  margin: 20px auto;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.18);
+}
+
+.marco-juego {
+  padding: 8px;
+  margin: 0 auto 22px;
+  max-width: 624px;
+  background: linear-gradient(135deg, #fef08a, #84cc16 45%, #2dd4bf);
+  border-radius: 20px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.27);
 }
 
 /* ESTILOS DEL PANEL DE INFORMACIÓN (puntos y vidas) */
 .panel {
   /* Espaciado vertical: 20px arriba y abajo */
-  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 22px;
+}
+
+.estadistica {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 13px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  color: #fff;
+  font-weight: 800;
+}
+
+.nombre-estadistica {
+  color: #bbf7d0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.estadistica span[id] {
+  min-width: 2rem;
+  color: #fde047;
+  font-size: 1.4rem;
 }
 
 /* ESTILOS DE LOS BOTONES */
@@ -53,9 +142,77 @@ canvas {
   /* Espacio alrededor de cada botón (5px en todos lados) */
   margin: 5px;
   /* Espacio interno del botón: 10px arriba/abajo, 16px izquierda/derecha */
-  padding: 10px 16px;
+  min-width: 144px;
+  padding: 12px 18px;
   /* Tamaño de la letra en los botones */
-  font-size: 16px;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
   /* Cambia el cursor a "puntero" cuando pasa el ratón */
   cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+}
+
+.boton-mover {
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+}
+
+.boton-reiniciar {
+  background: linear-gradient(135deg, #ca8a04, #eab308);
+}
+
+.botones button:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.22);
+}
+
+.botones button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.botones button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px 10px;
+  }
+
+  .contenedor {
+    padding: 22px 14px;
+    border-radius: 20px;
+  }
+
+  .marco-juego {
+    padding: 5px;
+    border-radius: 15px;
+  }
+
+  canvas {
+    border-width: 3px;
+    border-radius: 10px;
+  }
+
+  .botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .botones button {
+    width: auto;
+    min-width: 0;
+    margin: 4px;
+  }
+
+  .boton-reiniciar {
+    grid-column: 1 / -1;
+  }
 }
