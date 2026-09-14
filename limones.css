@@ -1,31 +1,61 @@
+/* ==========================================
+   ARCHIVO: limones.css
+   ESTILOS VISUALES - Juego Atrapar Limones
+   ==========================================
+   Este archivo define los estilos (colores, tamaños, espacios)
+   de toda la página del juego. Sin CSS, la página se vería fea.
+   ========================================== */
+
+/* ESTILOS DEL CUERPO DE LA PÁGINA (body) */
 body {
+  /* Tipo de letra a usar en toda la página */
   font-family: Arial, sans-serif;
+  /* Color de fondo de la página (azul muy oscuro) */
   background-color: #0f172a;
+  /* Color del texto (blanco para que se vea en fondo oscuro) */
   color: white;
+  /* Centra todo el contenido horizontalmente */
   text-align: center;
+  /* Elimina el espaciado por defecto del navegador */
   margin: 0;
+  /* Añade 20px de espacio interno en los lados */
   padding: 20px;
 }
 
+/* ESTILOS DEL CONTENEDOR PRINCIPAL */
 .contenedor {
+  /* Ancho máximo de 800px (si la pantalla es más grande, no crece más) */
   max-width: 800px;
+  /* Margen automático de 0 arriba/abajo y automático a los lados (centra horizontalmente) */
   margin: 0 auto;
 }
 
+/* ESTILOS DEL CANVAS (la pantalla del juego) */
 canvas {
+  /* Color de fondo dentro del canvas (gris) */
   background-color: #111827;
+  /* Borde cian/turquesa de 3px alrededor del canvas */
   border: 3px solid #38bdf8;
+  /* Mostrar como bloque (en su propia línea) */
   display: block;
+  /* Margen: 20px arriba/abajo, automático a los lados (centra horizontalmente) */
   margin: 20px auto;
 }
 
+/* ESTILOS DEL PANEL DE INFORMACIÓN (puntos y vidas) */
 .panel {
+  /* Espaciado vertical: 20px arriba y abajo */
   margin: 20px 0;
 }
 
+/* ESTILOS DE LOS BOTONES */
 .botones button {
+  /* Espacio alrededor de cada botón (5px en todos lados) */
   margin: 5px;
+  /* Espacio interno del botón: 10px arriba/abajo, 16px izquierda/derecha */
   padding: 10px 16px;
+  /* Tamaño de la letra en los botones */
   font-size: 16px;
+  /* Cambia el cursor a "puntero" cuando pasa el ratón */
   cursor: pointer;
 }

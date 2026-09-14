@@ -1,0 +1,83 @@
+<!-- ==========================================
+     ARCHIVO: limones.html
+     JUEGO: Atrapar Limones del Cielo
+     ==========================================
+     Este es el archivo HTML principal. Define la estructura de la página:
+     el canvas (pantalla del juego), botones de control, y estadísticas.
+     ========================================== -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Metadatos de la página -->
+  <meta charset="UTF-8">
+  <!-- Título que aparece en la pestaña del navegador -->
+  <title>Caza Limones</title>
+
+  <!-- Vincular el archivo CSS para estilos visuales (colores, tamaños, espacios) -->
+  <link rel="stylesheet" href="limones.css">
+
+  <!-- IMPORTANTE: Cargar el archivo de utilidades PRIMERO (debe ir antes de limones.js)
+       porque limones.js necesita usar las funciones generarAleatorio() y mostrarEnSpan() -->
+  <script src="utils.js"></script>
+</head>
+
+<!-- La etiqueta body carga el juego automáticamente con onload="iniciar()" -->
+<body onload="iniciar()">
+  <!-- Contenedor principal que centra todo -->
+  <div class="contenedor">
+    <!-- Título del juego -->
+    <h1>Atrapar Limones</h1>
+
+    <!-- Información adicional -->
+    <p>Si del cielo te caen limones .....</p>
+
+    <!-- Autor del juego -->
+    <h2>Autor: Ryan Reyna</h2>
+
+    <!-- ==========================================
+         CANVAS - La pantalla del juego
+         ========================================== -->
+    <!-- El canvas es donde se dibuja todo (el personaje, los limones, etc.)
+         width="600" = ancho de 600 píxeles
+         height="400" = alto de 400 píxeles
+         Este elemento se controla totalmente desde JavaScript -->
+    <canvas id="areaJuego" width="600" height="400"></canvas>
+
+    <!-- ==========================================
+         PANEL DE INFORMACIÓN
+         ========================================== -->
+    <!-- Muestra el puntaje y las vidas restantes -->
+    <div class="panel">
+      <!-- Puntaje: el <span id="txtPuntaje"> se actualiza dinámicamente desde JavaScript -->
+      <p>Puntaje: <span id="txtPuntaje">0</span></p>
+      <!-- Vidas: el <span id="txtVidas"> se actualiza dinámicamente desde JavaScript -->
+      <p>Vidas: <span id="txtVidas">3</span></p>
+    </div>
+
+    <!-- ==========================================
+         BOTONES DE CONTROL
+         ========================================== -->
+    <!-- Los botones permiten mover el personaje izquierda/derecha y reiniciar -->
+    <div class="botones">
+      <!-- Botón para mover a la izquierda - Llama a moverIzquierda() -->
+      <button type="button" onclick="moverIzquierda()">Izquierda</button>
+
+      <!-- Botón para mover a la derecha - Llama a moverDerecha() -->
+      <button type="button" onclick="moverDerecha()">Derecha</button>
+
+      <!-- Botón para reiniciar el juego - Llama a reiniciar() -->
+      <button type="button" onclick="reiniciar()">Reiniciar</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       CARGAR LA LÓGICA DEL JUEGO
+       ========================================== -->
+  <!-- Este archivo contiene todas las funciones principales del juego
+       (iniciar, moverIzquierda, detectarAtrapado, etc.)
+       IMPORTANTE: Se carga DESPUÉS del HTML para que pueda acceder a los elementos
+       y DESPUÉS de utils.js para poder usar sus funciones -->
+  <script src="limones.js"></script>
+</body>
+</html>
